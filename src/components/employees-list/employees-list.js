@@ -1,13 +1,21 @@
 import EmployeesListItem from "../employees-list-item/employees-list-item";
+import { nanoid } from 'nanoid'
 
 import './employees-list.css';
 
-const EmployeesList = () => {
+
+const EmployeesList = ({employees}) => {
+
+   const employeesItems = employees.map(item => {
+        
+        return(
+            <EmployeesListItem {...item} key={nanoid()}/>
+        )
+   })
+
     return (
         <ul className="app-list list-group">
-            <EmployeesListItem name="andrew" salary="1000"/>
-            <EmployeesListItem name="alex" salary="1000"/>
-            <EmployeesListItem name="alex" salary="1000"/>
+            {employeesItems}
         </ul>
     )
 }
