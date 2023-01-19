@@ -7,7 +7,6 @@ import './employees-list.css';
 const EmployeesList = ({employees}) => {
 
    const employeesItems = employees.map(item => {
-        
         return(
             <EmployeesListItem {...item} key={nanoid()}/>
         )
