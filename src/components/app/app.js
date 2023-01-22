@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { nanoid } from 'nanoid';
 
 import AppInfo from '../app-info/app-info';
 import SearchPanel from '../search-panel/search-panel';
@@ -21,6 +22,18 @@ class App extends Component {
     }
   }
 
+  addItem = (name, salary) => {
+    const newItem = {
+      name: name,
+      salary: salary,
+      increase: false,
+      id: nanoid()
+    }
+    this.setState(({data}) => ({
+      data: data.concat(newItem)
+    }))
+  }
+
   deleteItem = (id) => {
     this.setState(({data}) => ({
       data: data.filter(item => item.id !== id)
@@ -38,9 +51,11 @@ class App extends Component {
               <AppFilter/>
           </div>
           
-          <EmployeesList employees = {data}
-                         onDelete = {this.deleteItem}/>
-          <EmployeesAddForm/>
+          <EmployeesList 
+            employees = {data}
+            onDelete = {this.deleteItem}/>
+          <EmployeesAddForm 
+            onAddItem = {this.addItem}/>
       </div>
     )
   }
