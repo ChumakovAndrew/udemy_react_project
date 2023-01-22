@@ -1,14 +1,14 @@
 import EmployeesListItem from "../employees-list-item/employees-list-item";
-import { nanoid } from 'nanoid'
 
 import './employees-list.css';
 
 
-const EmployeesList = ({employees}) => {
+const EmployeesList = ({employees, onDelete}) => {
 
    const employeesItems = employees.map(item => {
+    const {id, ...itemProps} = item
         return(
-            <EmployeesListItem {...item} key={nanoid()}/>
+            <EmployeesListItem {...itemProps} key={id} onDelete={() => onDelete(id)}/>
         )
    })
 
