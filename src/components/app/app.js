@@ -42,16 +42,12 @@ class App extends Component {
     }))
   }
 
-  onToggleSwitch =(dataSwitch, id) => {
+  onToggleSwitch =(e, id) => {
+    const dataSwitch = e.target.dataset.switch
     this.setState(({data}) => ({
       data: data.map(item => {
         if(item.id === id){
-          if(dataSwitch === 'like'){
-            return {...item, like: !item.like}
-          }
-          else{
-            return {...item, increase: !item.increase}
-          }
+            return {...item, [dataSwitch]: !item[dataSwitch]}
         }
         return item
       })

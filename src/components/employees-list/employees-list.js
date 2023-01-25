@@ -12,7 +12,7 @@ const EmployeesList = ({employees, onDelete, onToggleSwitch}) => {
             {...itemProps} 
             key={id} 
             onDelete={() => onDelete(id)}
-            onToggleSwitch={(e) => onToggleSwitch(e.target.dataset.switch, id)}/>
+            onToggleSwitch={(e) => onToggleSwitch(e, id)}/>
         )
    })
 
