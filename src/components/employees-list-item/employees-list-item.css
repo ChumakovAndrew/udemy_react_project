@@ -34,6 +34,10 @@
     color: #e09f3e;
 }
 
+.pointer-cookie {
+    pointer-events: none;
+}
+
 .list-group-item .btn-trash {
     color: #e5383b;
 }

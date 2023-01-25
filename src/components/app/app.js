@@ -14,10 +14,10 @@ class App extends Component {
     super(props)
     this.state = {
       data: [
-        {name: "Alex", salary: 1000, increase: false, id: 1 },
-        {name: "Andrew", salary: 1000, increase: true, id: 2 },
-        {name: "Alex", salary: 1000, increase: false, id: 3 },
-        {name: "Andrew", salary: 1000, increase: false, id: 4 }
+        {name: "Alex", salary: 1000, increase: false,  like: false, id: 1 },
+        {name: "Andrew", salary: 1000, increase: true,  like: false, id: 2 },
+        {name: "Alex", salary: 1000, increase: false,  like: false, id: 3 },
+        {name: "Andrew", salary: 1000, increase: false, like: true, id: 4 }
       ]
     }
   }
@@ -27,6 +27,7 @@ class App extends Component {
       name: name,
       salary: salary,
       increase: false,
+      like: false,
       id: nanoid()
     }
     this.setState(({data}) => ({
@@ -37,6 +38,22 @@ class App extends Component {
   deleteItem = (id) => {
     this.setState(({data}) => ({
       data: data.filter(item => item.id !== id)
+    }))
+  }
+
+  onToggleSwitch =(dataSwitch, id) => {
+    this.setState(({data}) => ({
+      data: data.map(item => {
+        if(item.id === id){
+          if(dataSwitch === 'like'){
+            return {...item, like: !item.like}
+          }
+          else{
+            return {...item, increase: !item.increase}
+          }
+        }
+        return item
+      })
     }))
   }
 
@@ -53,7 +70,8 @@ class App extends Component {
           
           <EmployeesList 
             employees = {data}
-            onDelete = {this.deleteItem}/>
+            onDelete = {this.deleteItem}
+            onToggleSwitch = {this.onToggleSwitch}/>
           <EmployeesAddForm 
             onAddItem = {this.addItem}/>
       </div>
